@@ -4,20 +4,20 @@
 
 int stack[MAX];
 int top = -1;
+
 void push(int value) {
     if (top == MAX - 1) {
         printf("Stack Overflow\n");
     } else {
-        top++;
-        stack[top] = value;
+        stack[++top] = value;
     }
 }
+
 void pop() {
     if (top == -1) {
         printf("Stack Underflow\n");
     } else {
-        printf("%d\n", stack[top]);
-        top--;
+        printf("%d\n", stack[top--]);
     }
 }
 
