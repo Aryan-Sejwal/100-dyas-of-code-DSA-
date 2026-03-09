@@ -1,50 +1,33 @@
-#include <stdlib.h>
-#include <stdbool.h>
+#include <stdio.h>
 
-typedef struct {
-    int s1[10000];
-    int s2[10000];
-    int top1;
-    int top2;
-} MyQueue;
+#define MAX 100
 
-MyQueue* myQueueCreate() {
-    MyQueue* obj = (MyQueue*)malloc(sizeof(MyQueue));
-    obj->top1 = -1;
-    obj->top2 = -1;
-    return obj;
+int queue[MAX];
+int front = 0;
+int rear = -1;
+
+void enqueue(int value) {
+    rear++;
+    queue[rear] = value;
 }
 
-void myQueuePush(MyQueue* obj, int x) {
-    obj->s1[++obj->top1] = x;
+void display() {
+    for (int i = front; i <= rear; i++) {
+        printf("%d ", queue[i]);
+    }
 }
 
-int myQueuePop(MyQueue* obj) {
+int main() {
+    int n, x;
 
-    if (obj->top2 == -1) {
-        while (obj->top1 != -1) {
-            obj->s2[++obj->top2] = obj->s1[obj->top1--];
-        }
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &x);
+        enqueue(x);
     }
 
-    return obj->s2[obj->top2--];
-}
+    display();
 
-int myQueuePeek(MyQueue* obj) {
-
-    if (obj->top2 == -1) {
-        while (obj->top1 != -1) {
-            obj->s2[++obj->top2] = obj->s1[obj->top1--];
-        }
-    }
-
-    return obj->s2[obj->top2];
-}
-
-bool myQueueEmpty(MyQueue* obj) {
-    return (obj->top1 == -1 && obj->top2 == -1);
-}
-
-void myQueueFree(MyQueue* obj) {
-    free(obj);
+    return 0;
 }
