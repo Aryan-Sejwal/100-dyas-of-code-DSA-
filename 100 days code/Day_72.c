@@ -3,7 +3,7 @@
 
 int main() {
     char s[100];
-    int visited[26] = {0};  // for lowercase letters
+    int visited[26] = {0}; 
 
     printf("Enter string: ");
     scanf("%s", s);
